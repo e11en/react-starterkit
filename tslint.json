@@ -1,0 +1,76 @@
+{
+  "extends": ["tslint:recommended", "tslint-microsoft-contrib", "tslint-react", "tslint-config-prettier"],
+  "rules": {
+    "completed-docs": false,
+    "export-name": false,
+    "function-name": false,
+    "import-blacklist": [true,
+      "@material-ui/core",
+      "@material-ui/icons",
+      "lodash"
+    ],
+    "import-name": false,
+    "indent": [true, "spaces", 2],
+    "jsx-space-before-trailing-slash": true,
+    "match-default-export-name": false,
+    "missing-jsdoc": false,
+    "no-any": true,
+    "no-console": false,
+    "no-default-export": false,
+    "no-for-in": false,
+    "no-implicit-dependencies": false,
+    "no-import-side-effect": false,
+    "no-parameter-properties": false,
+    "no-parameter-reassignment": false,
+    "no-relative-imports": true,
+    "no-single-line-block-comment": false,
+    "no-submodule-imports": false,
+    "no-suspicious-comment": false,
+    "no-unsafe-any": false,
+    "no-void-expression": false,
+    "ordered-imports": false,
+    "object-literal-sort-keys": false,
+    "quotemark": [true, "avoid-escape", "avoid-template", "jsx-double", "single"],
+    "no-trailing-whitespace": true,
+    "strict-boolean-expressions": false,
+    "semicolon": true,
+    "no-consecutive-blank-lines": true,
+    "whitespace": [true,
+      "check-branch",
+      "check-decl",
+      "check-operator",
+      "check-module",
+      "check-separator",
+      "check-rest-spread",
+      "check-type",
+      "check-type-operator",
+      "check-preblock"
+    ],
+    "no-unused-expression": true,
+    "newline-before-return": true,
+    "trailing-comma": [
+      true,
+      {
+        "multiline": {
+          "objects": "never",
+          "arrays": "never",
+          "functions": "never",
+          "typeLiterals": "never"
+        },
+        "esSpecCompliant": true
+      }
+    ],
+    "typedef": [
+      true,
+      "parameter",
+      "property-declaration"
+    ],
+    "variable-name": false
+  },
+  "linterOptions": {
+    "exclude": [
+      "config/**/*.js",
+      "node_modules/**/*.ts"
+    ]
+  }
+}
