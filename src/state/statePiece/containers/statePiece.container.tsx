@@ -15,7 +15,7 @@ export interface IStatePieceActions {
 
 const mapStateToProps = (state: RootState): IStatePieceState => {
   return {
-    something: state.statePiece.something
+    something: '' //state.statePiece.something
   };
 };
 

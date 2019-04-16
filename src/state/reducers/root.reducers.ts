@@ -1,12 +1,13 @@
-import statePieceReducer, { IStatePieceState } from '@state/statePiece/reducers/statePiece.reducer';
+import { IUserState } from '@state/user/user.container';
+import userReducer from '@state/user/user.reducer';
 import { AnyAction, combineReducers } from 'redux';
 
 export type RootState = {
-  readonly statePiece: IStatePieceState;
+  readonly user: IUserState;
 };
 
 export const rootReducers = combineReducers({
-  statePiece: statePieceReducer
+  user: userReducer
 });
 
 //tslint:disable-next-line:no-any

@@ -22,7 +22,8 @@
     "skipLibCheck": true,
     "paths": {
       "@state/*": ["state/*"],
-      "@components/*": ["components/*"]
+      "@components/*": ["components/*"],
+      "@model/*": ["model/*"]
     }
   },
   "exclude": [
