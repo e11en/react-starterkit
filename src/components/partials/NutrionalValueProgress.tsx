@@ -1,7 +1,7 @@
+import { IClasses } from '@core/interfaces/IClasses';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import { createStyles, withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import { IClasses } from 'core/interfaces/IClasses';
 import * as React from 'react';
 import { compose } from 'recompose';
 

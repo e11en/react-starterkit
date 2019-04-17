@@ -1,10 +1,10 @@
 import 'firebase/auth';
 
 import Main from '@components/Main';
+import { InitializeFirebase } from '@core/firebase/Firebase';
 import createGenerateClassName from '@material-ui/core/styles/createGenerateClassName';
 import jssPreset from '@material-ui/core/styles/jssPreset';
 import { configure } from '@state/store';
-import { InitializeFirebase } from 'core/firebase/Firebase';
 import { create } from 'jss';
 import * as React from 'react';
 import { Provider } from 'react-redux';

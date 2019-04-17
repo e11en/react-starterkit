@@ -23,7 +23,8 @@
     "paths": {
       "@state/*": ["state/*"],
       "@components/*": ["components/*"],
-      "@model/*": ["model/*"]
+      "@model/*": ["model/*"],
+      "@core/*": ["core/*"]
     }
   },
   "exclude": [

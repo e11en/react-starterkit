@@ -1,5 +1,5 @@
+import { IClasses } from '@core/interfaces/IClasses';
 import { withStyles } from '@material-ui/core/styles';
-import { IClasses } from 'core/interfaces/IClasses';
 import firebase from 'firebase';
 import * as React from 'react';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';

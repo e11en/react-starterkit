@@ -1,8 +1,8 @@
+import { LOGIN, PROFILE } from '@core/constants/routes';
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import { IUserState, withUser } from '@state/user/user.container';
-import { LOGIN, PROFILE } from 'core/constants/routes';
 import firebase from 'firebase';
 import * as React from 'react';
 import { RouteComponentProps, withRouter } from 'react-router-dom';

@@ -1,9 +1,9 @@
+import { IClasses } from '@core/interfaces/IClasses';
 import IconButton from '@material-ui/core/IconButton';
 import { createStyles, withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
-import { IClasses } from 'core/interfaces/IClasses';
 import * as React from 'react';
 import { compose } from 'recompose';
 

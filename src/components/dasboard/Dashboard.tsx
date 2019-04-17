@@ -1,8 +1,8 @@
 import DayPicker from '@components/dasboard/DayPicker';
 import NutrionalValueProgress from '@components/partials/NutrionalValueProgress';
+import { IClasses } from '@core/interfaces/IClasses';
 import { withStyles } from '@material-ui/core/styles';
 import { IUserState, withUser } from '@state/user/user.container';
-import { IClasses } from 'core/interfaces/IClasses';
 import * as React from 'react';
 import { branch, compose, renderNothing } from 'recompose';
 

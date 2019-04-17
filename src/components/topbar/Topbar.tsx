@@ -1,10 +1,10 @@
 import UserMenu from '@components/topbar/UserMenu';
+import { IClasses } from '@core/interfaces/IClasses';
 import IconButton from '@material-ui/core/IconButton';
 import { withStyles } from '@material-ui/core/styles';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import MenuIcon from '@material-ui/icons/Menu';
-import { IClasses } from 'core/interfaces/IClasses';
 import * as React from 'react';
 import { compose } from 'recompose';
 
