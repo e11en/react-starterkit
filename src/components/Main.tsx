@@ -4,6 +4,7 @@ import Profile from '@components/profile/Profile';
 import Topbar from '@components/topbar/Topbar';
 import { LANDING, LOGIN, PROFILE } from '@core/constants/routes';
 import { IClasses } from '@core/interfaces/IClasses';
+import { addUser, userExists } from '@data/user';
 import AppBar from '@material-ui/core/AppBar';
 import { withStyles } from '@material-ui/core/styles';
 import { User } from '@model/User';
@@ -28,23 +29,34 @@ interface IProps extends IClasses, RouteComponentProps, IAuthState, IAuthActions
 class Main extends React.PureComponent<IProps> {
   constructor(props: IProps) {
     super(props);
-    const { isAuthenticated, user } = this.props;
+    const currentUser = this.props.user;
     firebase.auth().onAuthStateChanged((firebaseUser: firebase.User | null) => {
       // User is not authenticated, redirect to login
       if (!firebaseUser) {
         this.props.history.push('/login');
       }
 
-      this.props.setIsAuthenticated(isAuthenticated);
+      this.props.setIsAuthenticated(!!firebaseUser);
 
-      if (!user && firebaseUser) {
-        this.props.setUser(new User({
-          id: firebaseUser.uid,
-          name: firebaseUser.displayName ? firebaseUser.displayName : '',
-          email: firebaseUser.email ? firebaseUser.email : '',
-          weight: 0
-        }));
-      } else {
+      if (!currentUser && firebaseUser) {
+        userExists(firebaseUser.uid).then(result => {
+          if (result.exists && result.user) {
+            this.props.setUser(new User(result.user));
+          }
+          else {
+            const newUser = new User({
+              id: firebaseUser.uid,
+              name: firebaseUser.displayName ? firebaseUser.displayName : '',
+              email: firebaseUser.email ? firebaseUser.email : '',
+              weight: 0
+            });
+
+            addUser(newUser);
+            this.props.setUser(newUser);
+          }
+        });
+      }
+      else if (currentUser) {
         this.props.resetUser();
       }
     });
