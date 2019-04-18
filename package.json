@@ -139,7 +139,8 @@
       "@components/(.*)": "<rootDir>/src/components/$1",
       "@state/(.*)": "<rootDir>/src/state/$1",
       "@model/(.*)": "<rootDir>/src/model/$1",
-      "@core/(.*)": "<rootDir>/src/core/$1"
+      "@core/(.*)": "<rootDir>/src/core/$1",
+      "@data/(.*)": "<rootDir>/src/data/$1"
     },
     "moduleFileExtensions": [
       "web.ts",

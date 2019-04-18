@@ -24,7 +24,8 @@
       "@state/*": ["state/*"],
       "@components/*": ["components/*"],
       "@model/*": ["model/*"],
-      "@core/*": ["core/*"]
+      "@core/*": ["core/*"],
+      "@data/*": ["data/*"]
     }
   },
   "exclude": [
