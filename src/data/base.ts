@@ -6,7 +6,7 @@ import { Firestore } from '@core/firebase/Firebase';
  * @param id The document id
  * @returns Promise<firebase.firestore.DocumentSnapshot>
  */
-export function getData(entity: string, id: string) {
+export async function getData(entity: string, id: string) {
   return Firestore
     .collection(entity)
     .doc(id)
@@ -18,7 +18,7 @@ export function getData(entity: string, id: string) {
  * @param entity The collection name
  * @returns firebase.firestore.QuerySnapshot
  */
-export function getAllData(entity: string) {
+export async function getAllData(entity: string) {
   return Firestore
     .collection(entity)
     .get();
@@ -30,7 +30,7 @@ export function getAllData(entity: string) {
  * @param data The data you want to store
  * @returns Promise<firebase.firestore.DocumentReference>
  */
-export function addData(entity: string, data: firebase.firestore.DocumentData) {
+export async function addData(entity: string, data: firebase.firestore.DocumentData) {
   return Firestore.collection(entity).add(data);
 }
 
@@ -41,7 +41,7 @@ export function addData(entity: string, data: firebase.firestore.DocumentData) {
  * @param data The data you want to store
  * @returns Promise<firebase.firestore.DocumentReference>
  */
-export function addDataWithId(entity: string, id: string, data: firebase.firestore.DocumentData) {
+export async function addDataWithId(entity: string, id: string, data: firebase.firestore.DocumentData) {
   return Firestore.collection(entity).doc(id).set(data);
 }
 
@@ -52,7 +52,7 @@ export function addDataWithId(entity: string, id: string, data: firebase.firesto
  * @param data The data you want to update
  * @returns Promise<void>
  */
-export function updateData(entity: string, id: string, data: firebase.firestore.UpdateData) {
+export async function updateData(entity: string, id: string, data: firebase.firestore.UpdateData) {
   return Firestore.collection(entity).doc(id).update(data);
 }
 
@@ -62,7 +62,7 @@ export function updateData(entity: string, id: string, data: firebase.firestore.
  * @param id The document id
  * @returns Promise<{ exists: boolean; document: firebase.firestore.DocumentSnapshot; }>
  */
-export function documentExists(entity: string, id: string) {
+export async function documentExists(entity: string, id: string) {
   return Firestore.collection(entity).doc(id).get().then(snapshot => {
     return { exists: snapshot.exists, document: snapshot };
   });

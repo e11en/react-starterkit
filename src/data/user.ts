@@ -13,24 +13,24 @@ function convertDocumentDataToUser(data: firebase.firestore.DocumentData): IUser
   };
 }
 
-export function getUserData(id: string) {
+export async function getUserData(id: string) {
   return getData(ENTITY, id);
 }
 
-export function getAllUser() {
+export async function getAllUser() {
   return getAllData(ENTITY);
 }
 
-export function addUser(data: IUser) {
+export async function addUser(data: IUser) {
   // TODO: Add check id user id already exists
   return addDataWithId(ENTITY, data.id, data);
 }
 
-export function updateUser(id: string, data: IUser) {
+export async function updateUser(id: string, data: IUser) {
   return updateData(ENTITY, id, data);
 }
 
-export function userExists(id: string) {
+export async function userExists(id: string) {
   return documentExists(ENTITY, id).then(result => {
     const data = result.document.data();
     let user: IUser | undefined;
