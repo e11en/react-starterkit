@@ -9,6 +9,7 @@
       "@material-ui/icons",
       "lodash"
     ],
+    "radix": false,
     "import-name": false,
     "indent": [true, "spaces", 2],
     "jsx-space-before-trailing-slash": true,
