@@ -15,7 +15,8 @@ const styles = createStyles({
 
 class Profile extends React.PureComponent<IClasses & IUserState> {
   public state = {
-    user: this.props.user
+    user: this.props.user,
+    error: []
   };
 
   public componentDidUpdate() {
@@ -36,8 +37,7 @@ class Profile extends React.PureComponent<IClasses & IUserState> {
     return (
       <form className={classes.wrapper} onSubmit={this.submitHandler}>
         {
-          Object.keys(user)
-            .filter((key: string) => isNotInArray(key, ['displayName']))
+          this.getUserRelevantFields()
             .map((key: string) => {
               if (typeof user[key] === 'function') {
                 return;
@@ -56,19 +56,84 @@ class Profile extends React.PureComponent<IClasses & IUserState> {
     );
   }
 
+  private getUserRelevantFields = () => {
+    if (this.state.user) {
+      return Object.keys(this.state.user).filter((key: string) => isNotInArray(key, ['id', 'displayName']));
+    }
+
+    return [];
+  }
+
   private submitHandler = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
+    if (this.valid()) {
+      console.log('VALID', this.state.user);
+    }
+  }
+
+  private valid = () => {
+    const { user } = this.state;
+    let valid = true;
+    if (!user) {
+      return false;
+    }
+    this.getUserRelevantFields()
+      .map((key: string) => {
+        if (typeof user[key] === 'object') {
+          Object.keys(user[key]).map((k: string) => {
+            const empty = this.isEmpty(user[key][k]);
+            if (empty) {
+              this.setState({
+                error: {
+                  ...this.state.error,
+                  [`${key}.${k}`]: 'empty'
+                }
+              });
+              valid = false;
+            }
+          });
+        }
+        else {
+          const empty = this.isEmpty(user[key]);
+          if (empty) {
+            this.setState({
+              error: {
+                ...this.state.error,
+                [key]: 'empty'
+              }
+            });
+            valid = false;
+          }
+        }
+
+      });
+
+    return valid;
+  }
+
+  // tslint:disable-next-line:no-any
+  private isEmpty = (val: any) => {
+    const value = `${val}`.trim();
+
+    if (value === '' || value === undefined || value === null) {
+      return true;
+    }
+
+    return false;
   }
 
   private changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     const key = event.target.name;
     const isConstructedKey = key.includes('.');
     let newUser;
+    const isNumber = event.target.type === 'number';
+    const value = isNumber && !!event.target.value  ? parseInt(event.target.value) : event.target.value;
 
     if (!isConstructedKey) {
       newUser = {
         ...this.state.user,
-        [key]: event.target.value
+        [key]: value
       };
     }
     else {
@@ -81,7 +146,7 @@ class Profile extends React.PureComponent<IClasses & IUserState> {
         ...user,
         [constructedKey[0]]: {
           ...user[constructedKey[0]],
-          [constructedKey[1]]: event.target.value
+          [constructedKey[1]]: value
         }
       };
     }
@@ -96,7 +161,27 @@ class Profile extends React.PureComponent<IClasses & IUserState> {
 
   // tslint:disable-next-line:no-any
   private renderField = (key: string, value: any, label: string) => {
-    return <TextField key={`profile-${key}`} name={key} label={label} value={value} onChange={this.changeHandler} required={true} />;
+    const hasError = this.state.error[key] !== undefined;
+
+    return <TextField
+      key={`profile-${key}`}
+      name={key}
+      label={label}
+      value={value}
+      type={this.getInputType(key, value)}
+      onChange={this.changeHandler}
+      required={true}
+      error={hasError}
+    />;
+  }
+
+  // tslint:disable-next-line:no-any
+  private getInputType = (key: string, value: any) => {
+    if (key === 'email') {
+      return 'email';
+    }
+
+    return typeof value === 'number' ? 'number' : 'text';
   }
 }
 
