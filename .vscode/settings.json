@@ -1,9 +1,0 @@
-{
-  "[typescript]": {
-    "editor.formatOnSave": true
-  },
-  "typescriptHero.imports.organizeOnSave": true,
-  "tslint.autoFixOnSave": true,
-  "editor.tabSize": 2,
-  "typescript.tsdk": "node_modules\\typescript\\lib",
-}
