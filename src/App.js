@@ -26,7 +26,7 @@ export default() => {
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
-        <Menu title="FoodPickr" />
+        <Menu title="SomeName" />
         <StyledWrapper>
           <Routing />
         </StyledWrapper>
